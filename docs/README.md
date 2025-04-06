@@ -168,13 +168,7 @@ Manual and automated test cases were run to ensure:
 
 ---
 
-## 🧾 License
-
-This project is open-source and available under the MIT License.
-
----
-
 ## 🤝 Acknowledgements
 
 - Developed as part of the **Network Security (CS3403)** course.
-- Special thanks to our faculty and teammates for guidance and collaboration.
+
