@@ -106,35 +106,35 @@ NS/
 
 ## 📊 System Flowcharts
 
-All diagrams are available in the [`docs/diagrams/`](docs/diagrams/) folder for better visualization and understanding of the project. Each diagram explains a core component or interaction within the system.
+All diagrams are available in the [`docs/diagrams/`] folder for better visualization and understanding of the project. Each diagram explains a core component or interaction within the system.
 
 ---
 
 ### 🧠 System Architecture Diagram  
 Illustrates the overall structure of the Secure Digital Wallet System, including the flow between the client, server, database, and authentication modules.
 
-![System Architecture Diagram](docs/diagrams/system_architecture.png)
+![System Architecture Diagram](diagrams/system_architecture.png)
 
 ---
 
 ### 🧾 Client Communication Flow  
 Details how the Python client (GUI & CLI) interacts with the server, sends/receives messages, and updates the interface based on responses.
 
-![Client Communication Flow](docs/diagrams/client_side.png)
+![Client Communication Flow](diagrams/client_side.png)
 
 ---
 
 ### 🖧 Server Communication Flow  
 Explains how the multi-threaded C server manages concurrent requests, processes transactions, and handles secure communication.
 
-![Server Communication Flow](docs/diagrams/server_side.png)
+![Server Communication Flow](diagrams/server_side.png)
 
 ---
 
 ### 🗃️ Database Design  
 Describes the schema used for storing user credentials, wallet balances, transaction history, and admin data. Includes table relationships and indexes.
 
-![Database Design](docs/diagrams/database.png)
+![Database Design](diagrams/database.png)
 
 
 ---
