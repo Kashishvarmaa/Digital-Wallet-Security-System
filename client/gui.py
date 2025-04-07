@@ -6,7 +6,7 @@ import pyperclip
 from wallet_client import WalletClient  # Handles socket communication
 import sqlite3
 import os
-print("Database path:", os.path.abspath("/Users/kashishvarmaa/Downloads/GPT_NS/wallet.db"))
+
 
 client = WalletClient()  # Connects to server on start
 
@@ -116,7 +116,7 @@ class WalletApp:
         scrollbar.config(command=text_widget.yview)
 
         # Fetch data
-        conn = sqlite3.connect('/Users/kashishvarmaa/Downloads/GPT_NS/wallet.db')
+        conn = sqlite3.connect('/Users/kashishvarmaa/Documents/6 Sem/NS/Digital Secure Wallet System/server/wallet.db')
         c = conn.cursor()
         try:
             c.execute(
@@ -152,7 +152,7 @@ class WalletApp:
             messagebox.showerror("Invalid Input", "Enter a valid number.")
             return
 
-        response = client.send_command(f"TRANSFER {self.username} {recipient} {amount}")
+        response = client.send_command(f"TRANSFER {recipient} {amount}")
         messagebox.showinfo("Transfer", response)
         self.wallet_screen()
 

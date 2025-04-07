@@ -64,7 +64,7 @@ while True:
             receiver = input("Enter recipient's username: ")
             try:
                 amount = float(input("Enter amount to transfer: "))
-                send_request(f"TRANSFER {logged_in_user} {receiver} {amount}")
+                send_request(f"TRANSFER {receiver} {amount}")
             except ValueError:
                 print("Invalid amount! Please enter a number.")
 
