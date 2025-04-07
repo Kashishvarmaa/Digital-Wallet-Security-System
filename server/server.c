@@ -115,29 +115,39 @@ void *handle_client(void *socket_desc) {
             send(sock, response, strlen(response), 0);
         }
 
-        else if (sscanf(buffer, "TRANSFER %s %lf", arg1, &amount) == 2) {
-            if (strlen(current_username) == 0) {
-                send(sock, "Please login first.\n", 21, 0);
-                continue;
-            }
-
-            if (amount > 1000.0) {
-                send(sock, "Transaction limit exceeded! Max ₹1000.\n", 40, 0);
-                continue;
-            }
-
-            if (transfer_money(current_username, arg1, amount)) {
-                double new_balance = get_balance(current_username);
-                char response[BUFFER_SIZE];
-                sprintf(response, "Transfer successful! New balance: ₹%.2f\n", new_balance);
-                send(sock, response, strlen(response), 0);
-
-                printf("[INFO] %s sent ₹%.2f to %s. New Balance: ₹%.2f\n", current_username, amount, arg1, new_balance);
+        else if (strncmp(buffer, "TRANSFER", 8) == 0) {
+            char receiver[100];
+            double amount;
+            printf("[DEBUG] Received buffer: '%s'\n", buffer);
+        
+            if (sscanf(buffer, "TRANSFER %s %lf", receiver, &amount) == 2) {
+                if (strlen(current_username) == 0) {
+                    send(sock, "Please login first.\n", 21, 0);
+                    return NULL;
+                }
+        
+                if (amount > 1000.0) {
+                    send(sock, "Transaction limit exceeded! Max ₹1000.\n", 40, 0);
+                    return NULL;
+                }
+        
+                if (transfer_money(current_username, receiver, amount)) {
+                    double new_balance = get_balance(current_username);
+                    char response[BUFFER_SIZE];
+                    sprintf(response, "Transfer successful! New balance: ₹%.2f\n", new_balance);
+                    send(sock, response, strlen(response), 0);
+                    printf("[INFO] %s sent ₹%.2f to %s. New Balance: ₹%.2f\n", current_username, amount, receiver, new_balance);
+                } else {
+                    send(sock, "Transfer failed! Check balance or recipient.\n", 45, 0);
+                }
             } else {
-                send(sock, "Transfer failed! Check balance or recipient.\n", 45, 0);
+                send(sock, "Invalid TRANSFER format. Use: TRANSFER <recipient> <amount>\n", 60, 0);
             }
         }
 
+        
+
+        
         else if (strncmp(buffer, "HISTORY", 7) == 0) {
             if (strlen(current_username) == 0) {
                 send(sock, "Please login first.\n", 21, 0);
