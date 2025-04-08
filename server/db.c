@@ -286,8 +286,6 @@ int is_admin(const char *username) {
     return admin;
 }
 
-
-
 void get_admin_stats(char *response) {
     sqlite3_stmt *stmt;
     char temp[512];

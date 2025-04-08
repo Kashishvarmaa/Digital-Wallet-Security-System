@@ -1,17 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <pthread.h>
-#include <unistd.h>
-#include <signal.h>
-#include <arpa/inet.h>
-#include <sqlite3.h>  // Needed for database functions
-#include "db.h"
-#include "auth.h"
-#include "transactions.h"
+#include <stdio.h>        // for printf, etc.
+#include <stdlib.h>       // for exit, etc.
+#include <string.h>       // for string functions
+#include <pthread.h>      // for multithreading
+#include <unistd.h>       // for close(), etc.
+#include <signal.h>       // for signal handling
+#include <arpa/inet.h>    // for socket functions
+#include <sqlite3.h>      // for database functions
+#include "db.h"           // your own file for DB functions
+#include "auth.h"         // your own file for authentication functions
+#include "transactions.h" // your own file for transactions
+
 
 #define PORT 8080
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 4096
 
 int server_fd; // Global for graceful shutdown
 
@@ -145,9 +146,6 @@ void *handle_client(void *socket_desc) {
             }
         }
 
-        
-
-        
         else if (strncmp(buffer, "HISTORY", 7) == 0) {
             if (strlen(current_username) == 0) {
                 send(sock, "Please login first.\n", 21, 0);

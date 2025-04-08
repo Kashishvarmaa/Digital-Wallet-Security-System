@@ -1,5 +1,5 @@
 Server side
- gcc server.c db.c transactions.c -o server \
+ggit pull --rebasecc server.c db.c transactions.c -o server \
 -lpthread -lsqlite3 -lcrypto \
 -I/opt/homebrew/opt/openssl@3/include \
 -L/opt/homebrew/opt/openssl@3/lib

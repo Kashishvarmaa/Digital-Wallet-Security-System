@@ -2,3 +2,5 @@
 .vscode
 client/__pycache__/
 client/path
+server/wallet.db
+server/server
